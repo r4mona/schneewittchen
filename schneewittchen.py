@@ -73,7 +73,7 @@ def get_balance(addresses):
 def market_enquiry(pair):
 	url = "https://api.hitbtc.com/api/3/public/ticker/%s" % (pair) 
 	data = get_json(url)
-	return float(data.get("last", "-1"))
+	return float(data.get("last", "-111"))
 
 
 def my_balance_in_x(addressesdict, quote):
