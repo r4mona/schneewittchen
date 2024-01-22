@@ -6,8 +6,6 @@ def get_json(url):
 	request = requests.get(url)
 	# request.status_code - gibt den status im Terminal aus (nr. <400 = alles i.o, >400 = error)
 	if request.status_code >= 400:
-		print(url)
-		print(request.status_code, "error")
 		return dict()
 	data = request.json() #=dictionary
 	return data
