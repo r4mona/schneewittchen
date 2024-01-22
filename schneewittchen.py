@@ -2,13 +2,6 @@ import requests
 import address_for_currencies
 
 
-# search rune get_balance api
-# search tron market_enquiry api
-# get balance in USDT
-# get balanc in bnb
-# addressen in sep .py file
-
-
 def get_json(url):
 	request = requests.get(url)
 	# request.status_code - gibt den status im Terminal aus (nr. <400 = alles i.o, >400 = error)
@@ -89,14 +82,11 @@ def my_balance_in_x(addressesdict, quote):
 		balance_in_usdt += balance * price
 	return balance_in_usdt
 
-#print(my_balanc_in_usdt(address_for_currencies.addresses, "usdt"))
 
 def my_balance_in_quote(addressesdict, quote):
 	balance_in_quote = my_balance_in_x(addressesdict, "usdt") / market_enquiry(quote + "usdt")
 	return balance_in_quote
 
-
-print(my_balance_in_quote(address_for_currencies.addresses, "bnb"))
 
 
 
