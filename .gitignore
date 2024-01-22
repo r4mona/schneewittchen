@@ -3,3 +3,5 @@ get_balance_bnb_chain.py
 get_balance_tron_chain.py
 test_get_balance_addresses.py
 __pycache__
+privat_adresses.py
+.DS_Store
