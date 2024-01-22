@@ -1,5 +1,5 @@
 import requests
-import address_for_currencies
+from addresses import addresses
 
 
 def get_json(url):
