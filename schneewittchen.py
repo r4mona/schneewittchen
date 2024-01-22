@@ -66,27 +66,29 @@ def get_balance(addresses):
 def market_enquiry(pair):
 	url = "https://api.hitbtc.com/api/3/public/ticker/%s" % (pair) 
 	data = get_json(url)
-	return float(data.get("last", "-111"))
+	return float(data.get("last", "0"))
 
 
-def my_balance_in_x(addressesdict, quote):
+def my_balance_in_usdt(addresses):
 	balance_in_usdt = 0
-	for chain, address in addressesdict.items():
-		balance = get_balance(address)
-		if chain == quote:
+	balances = get_balance(addresses)
+	for tupel in balances:
+		symbol = tupel[0]
+		balance = tupel[1]
+		if symbol == "usdt" or symbol == "busd" or symbol == "usd":
 			price = 1
 		else:
-			if chain == "bsc":
-				chain = "bnb"
-			price = market_enquiry(chain + quote)
+			if symbol == "bsc":
+				symbol = "bnb"
+			price = market_enquiry(symbol + "usdt")
 		balance_in_usdt += balance * price
 	return balance_in_usdt
 
 
-def my_balance_in_quote(addressesdict, quote):
-	balance_in_quote = my_balance_in_x(addressesdict, "usdt") / market_enquiry(quote + "usdt")
+def my_balance_in_quote(addresses, quote):
+	balance_in_quote = my_balance_in_usdt(addresses)
+	if quote != "usdt":
+		balance_in_quote /= market_enquiry(quote + "usdt")
 	return balance_in_quote
 
-
-
-
+print(my_balance_in_quote(addresses, "usdt"))
