@@ -19,12 +19,13 @@ def get_json(url):
 	data = request.json() #=dictionary
 	return data
 
+
 def get_chain_from_address(address):
-	if address[0-3] == "TKiv":
+	if address[:4] == "TKiv":
 		return "trx"
-	if address[0-3] == "bnb1":
+	if address[:4] == "bnb1":
 		return "bnb"
-	if address[0-1] == "0x":
+	if address[:2] == "0x":
 		return "bsc"
 	else:
 		return "not identified"
